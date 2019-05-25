@@ -1,0 +1,14 @@
+﻿@model IEnumerable<DAL.Models.Categories>
+@{
+    ViewData["Title"] = "SubCategory";
+}
+
+<div class="text-center">
+    <h3>ПодКатегории</h3>
+    @foreach (var subCategory in Model)
+    {
+        <p><a href="~/Home/Tests/@subCategory.Id">@subCategory.Name</a></p>
+        <img src="../../@subCategory.Picture" width="256" height="256" alt="@subCategory.Name">
+    }
+</div>
+
