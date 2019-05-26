@@ -4,10 +4,9 @@
 }
 
 <div class="text-center">
-    <h3>Категории</h3>
     @foreach (dynamic category in Model)
     {
-        <p><a href="~/Home/SubCategories/@category.Id">@category.Name (@category.Learn)</a></p>
+        <p><a href="~/Home/SubCategories?id=@category.Id&idLangLearn=@category.idLangLearn&idLangNative=@category.idLangNative">@category.Name (@category.Learn)</a></p>
         <img src="../@category.Picture" width="256" height="256" alt="@category.Name">
     }
 </div>

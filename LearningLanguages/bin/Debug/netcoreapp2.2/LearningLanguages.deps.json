@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v2.2",
-    "signature": "6d9e6cc4b0ab5b01e70be7887cabc94e740957dc"
+    "signature": "68864032ac071e60e473ee90991ebf65c733dfa6"
   },
   "compilationOptions": {
     "defines": [
@@ -28,8 +28,7 @@
           "Microsoft.AspNetCore.App": "2.2.0",
           "Microsoft.AspNetCore.Razor.Design": "2.2.0",
           "Microsoft.NETCore.App": "2.2.0",
-          "Microsoft.VisualStudio.Web.CodeGeneration.Design": "2.2.3",
-          "SmartBreadcrumbs": "2.1.0"
+          "Microsoft.VisualStudio.Web.CodeGeneration.Design": "2.2.3"
         },
         "runtime": {
           "LearningLanguages.dll": {}
@@ -324,25 +323,6 @@
         },
         "compile": {
           "lib/netstandard1.0/Remotion.Linq.dll": {}
-        }
-      },
-      "SmartBreadcrumbs/2.1.0": {
-        "dependencies": {
-          "Microsoft.AspNetCore.Mvc.Abstractions": "2.2.0",
-          "Microsoft.AspNetCore.Mvc.Core": "2.2.0",
-          "Microsoft.AspNetCore.Mvc.RazorPages": "2.2.0",
-          "Microsoft.AspNetCore.Mvc.ViewFeatures": "2.2.0",
-          "Microsoft.AspNetCore.Razor": "2.2.0",
-          "Microsoft.AspNetCore.Razor.Runtime": "2.2.0"
-        },
-        "runtime": {
-          "lib/netstandard2.0/SmartBreadcrumbs.dll": {
-            "assemblyVersion": "2.1.0.0",
-            "fileVersion": "2.1.0.0"
-          }
-        },
-        "compile": {
-          "lib/netstandard2.0/SmartBreadcrumbs.dll": {}
         }
       },
       "System.Collections.Immutable/1.5.0": {},
@@ -3768,13 +3748,6 @@
       "sha512": "sha512-fK/76UmpC0FXBlGDFVPLJHQlDLYnGC+XY3eoDgCgbtrhi0vzbXDQ3n/IYHhqSKqXQfGw/u04A1drWs7rFVkRjw==",
       "path": "remotion.linq/2.2.0",
       "hashPath": "remotion.linq.2.2.0.nupkg.sha512"
-    },
-    "SmartBreadcrumbs/2.1.0": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-XW9nnPIvs+xds4vw4Ni7sZOGKNkRUTXd95MVjG+oOnFqiHbpQi+Nc3+jjUu/9u5NESU8Jgb603+Z1tsLa3GzSw==",
-      "path": "smartbreadcrumbs/2.1.0",
-      "hashPath": "smartbreadcrumbs.2.1.0.nupkg.sha512"
     },
     "System.Collections.Immutable/1.5.0": {
       "type": "package",

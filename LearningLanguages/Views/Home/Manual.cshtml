@@ -1,0 +1,21 @@
+﻿@model IndexViewModel
+@{
+    ViewData["Title"] = "Manual";
+}
+
+<div>
+    @foreach (dynamic word in Model.Words)
+    {
+        <p>@word.Name (@word.Learn)</p>
+        <img src="../../@word.Picture" width="256" height="256" alt="@word.Name">
+    }
+</div>
+
+@if (Model.PageViewModel.HasPreviousPage)
+{
+    <p><a href="~/Home/Manual?id=@ViewBag.CategoryId&idLangLearn=@ViewBag.idLangLearn&idLangNative=@ViewBag.idLangNative&page=@(Model.PageViewModel.PageNumber - 1)">Prev</a></p>
+}
+@if (Model.PageViewModel.HasNextPage)
+{
+    <p><a href="~/Home/Manual?id=@ViewBag.CategoryId&idLangLearn=@ViewBag.idLangLearn&idLangNative=@ViewBag.idLangNative&page=@(Model.PageViewModel.PageNumber + 1)">Next</a></p>
+}
