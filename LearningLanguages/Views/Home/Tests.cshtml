@@ -1,0 +1,35 @@
+﻿@model IEnumerable<dynamic>
+@{
+    ViewData["Title"] = "Tests";
+}
+
+<div>
+    <p><a href="~/Home/Categories/SubCategories/Tests/Manual?id=@ViewBag.subCategoryId&idLangLearn=@ViewBag.idLangLearn&idLangNative=@ViewBag.idLangNative">Manual</a></p>
+    <p><a href="~/Home/Categories/SubCategories/Tests/Slideshow?id=@ViewBag.subCategoryId&idLangLearn=@ViewBag.idLangLearn&idLangNative=@ViewBag.idLangNative">Slideshow</a></p>
+</div>
+
+<div class="tests">
+    @foreach (dynamic test in Model)
+    {
+        <div class="test">
+            <a href="~/Home/Categories/SubCategories/Tests/@test.Icon.Substring(73, 6)?id=@ViewBag.subCategoryId&idLangLearn=@ViewBag.idLangLearn&idLangNative=@ViewBag.idLangNative">
+                <p>@test.Name (@test.Learn)</p>
+                <img src="../../../@test.Icon" width="64" height="64" alt="@test.Name">
+            </a>
+        </div>
+    }
+</div>
+
+<style>
+    .tests {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .test {
+        width: 180px; 
+        height: 180px; 
+        margin: auto;
+    }
+</style>

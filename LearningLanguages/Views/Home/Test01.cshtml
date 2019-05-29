@@ -1,0 +1,29 @@
+﻿@model IEnumerable<DAL.Models.Words>
+
+@{
+    ViewData["Title"] = "Test01";
+}
+
+<div class="words">
+    @foreach (var word in Model)
+    {
+    <div class="word">
+        <a href="~/Home/Categories/SubCategories/Tests/Test01?id=@ViewBag.subCategoryId&idLangLearn=@ViewBag.idLangLearn&idLangNative=@ViewBag.idLangNative">
+            <img src="../../../../@word.Picture" width="256" height="256" alt="@word.Name">
+        </a>
+    </div>
+    }
+</div>
+
+<style>
+    .words {
+        display: flex; 
+        height: 300px; 
+    }
+    .word {
+        width: 256px; 
+        height: 256px;
+        margin: auto; 
+    }
+
+</style>
