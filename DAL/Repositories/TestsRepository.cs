@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using DAL.Models;
 
 namespace DAL.Repositories
@@ -61,6 +62,37 @@ namespace DAL.Repositories
         {
             Dispose(true);
             GC.SuppressFinalize(this);
+        }
+
+        public List<DTO> GetTranslations(int idLangLearn, int idLangNative, int? parentId)
+        {
+            var LearnLangTests = db.Tests
+                .Join(
+                    db.TestTranslations.Where(s => s.LangId == idLangLearn),
+                    test => test.Id,
+                    testTrans => testTrans.TestId,
+                    (test, testTrans) => new
+                    {
+                        Id = test.Id,
+                        Name = testTrans.Translation
+                    }
+            ).ToList();
+
+            List<DTO> NativeLearnLangTests = db.Tests
+                .Join(
+                    db.TestTranslations.Where(s => s.LangId == idLangNative),
+                    test => test.Id,
+                    testTrans => testTrans.TestId,
+                    (test, testTrans) => new DTO
+                    {
+                        Id = test.Id,
+                        WordNativeLang = testTrans.Translation,
+                        Picture = test.Icon,
+                        WordLearnLang = LearnLangTests.Find(x => x.Id == test.Id).Name
+                    }
+            ).ToList();
+
+            return NativeLearnLangTests;
         }
     }
 }

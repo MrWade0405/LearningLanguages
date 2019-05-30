@@ -1,15 +1,16 @@
-﻿@model IEnumerable<dynamic>
+﻿@using DAL.Models
+@model IEnumerable<DTO>
 @{
     ViewData["Title"] = "SubCategory";
 }
 
 <div class="subCategories">
-    @foreach (dynamic subCategory in Model)
+    @foreach (var subCategory in Model)
     {
     <div class="subCategory">
-        <a href="~/Home/Categories/SubCategories/Tests?id=@subCategory.Id&idLangLearn=@ViewBag.idLangLearn&idLangNative=@ViewBag.idLangNative">
-            <p>@subCategory.Name (@subCategory.Learn)</p>
-            <img src="../../@subCategory.Picture" width="128" height="128" alt="@subCategory.Name">
+        <a href="~/Home/Categories/SubCategories/Tests?id=@subCategory.Id">
+            <p>@subCategory.WordNativeLang (@subCategory.WordLearnLang)</p>
+            <img src="../../@subCategory.Picture" width="128" height="128" alt="@subCategory.WordNativeLang">
         </a>
     </div>
 }

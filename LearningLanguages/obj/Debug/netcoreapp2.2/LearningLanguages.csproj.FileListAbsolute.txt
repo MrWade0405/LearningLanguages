@@ -65,3 +65,4 @@ D:\Projects\LearnLang\LearningLanguages\obj\Debug\netcoreapp2.2\Razor\Views\Home
 D:\Projects\LearnLang\LearningLanguages\obj\Debug\netcoreapp2.2\Razor\Views\Home\Tests.g.cshtml.cs
 D:\Projects\LearnLang\LearningLanguages\obj\Debug\netcoreapp2.2\Razor\Views\Home\Manual.g.cshtml.cs
 D:\Projects\LearnLang\LearningLanguages\obj\Debug\netcoreapp2.2\Razor\Views\Home\Test01.g.cshtml.cs
+D:\Projects\LearnLang\LearningLanguages\obj\Debug\netcoreapp2.2\Razor\Views\Home\Slideshow.g.cshtml.cs

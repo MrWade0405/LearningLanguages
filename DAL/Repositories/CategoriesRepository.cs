@@ -63,5 +63,36 @@ namespace DAL.Repositories
             Dispose(true);
             GC.SuppressFinalize(this);
         }
+
+        public List<DTO> GetTranslations(int idLangLearn, int idLangNative, int? parentId)
+        {
+            var LearnLangCat = db.Categories.Where(s => s.ParentId == parentId)
+                .Join(
+                    db.CategoriesTranslations.Where(s => s.LangId == idLangLearn),
+                    category => category.Id,
+                    categoryTrans => categoryTrans.CategoryId,
+                    (category, categoryTrans) => new
+                    {
+                        Id = category.Id,
+                        Name = categoryTrans.Translation
+                    }
+            ).ToList();
+
+            List<DTO> NativeLearnLangCat = db.Categories.Where(s => s.ParentId == parentId)
+                .Join(
+                    db.CategoriesTranslations.Where(s => s.LangId == idLangNative),
+                    category => category.Id,
+                    categoryTrans => categoryTrans.CategoryId,
+                    (category, categoryTrans) => new DTO
+                    {
+                        Id = category.Id,
+                        WordNativeLang = categoryTrans.Translation,
+                        Picture = category.Picture,
+                        WordLearnLang = LearnLangCat.Find(x => x.Id == category.Id).Name
+                    }
+            ).ToList();
+
+            return NativeLearnLangCat;
+        }
     }
 }

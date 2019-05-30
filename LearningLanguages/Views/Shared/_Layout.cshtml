@@ -13,8 +13,9 @@
               asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
               asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute"
               crossorigin="anonymous"
-              integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"/>
+              integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" />
     </environment>
+
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body>
@@ -45,23 +46,23 @@
         @Html.ActionLink("Home", "Index", "Home")
         @if (Url.RouteUrl(ViewContext.RouteData.Values).Contains("Categories"))
         {
-            @:> @Html.ActionLink("Categories", "Categories", ViewContext.RouteData.Values["controller"].ToString(), new { ViewContext.ViewBag.idLangNative, ViewContext.ViewBag.idLangLearn }, null)
+            @:> @Html.ActionLink("Categories", "Categories", ViewContext.RouteData.Values["controller"].ToString())
         }
         @if (Url.RouteUrl(ViewContext.RouteData.Values).Contains("SubCategories"))
         {
-            @:> @Html.ActionLink("SubCategories", "SubCategories", ViewContext.RouteData.Values["controller"].ToString(), new { id = ViewContext.ViewBag.categoryId, ViewContext.ViewBag.idLangNative, ViewContext.ViewBag.idLangLearn }, null)
+            @:> @Html.ActionLink("SubCategories", "SubCategories", ViewContext.RouteData.Values["controller"].ToString(), new { id = ViewContext.ViewBag.categoryId }, null)
         }
         @if (Url.RouteUrl(ViewContext.RouteData.Values).Contains("Tests"))
         {
-            @:> @Html.ActionLink("Tests", "Tests", ViewContext.RouteData.Values["controller"].ToString(), new { id = ViewContext.ViewBag.subCategoryId, ViewContext.ViewBag.idLangNative, ViewContext.ViewBag.idLangLearn }, null)
+            @:> @Html.ActionLink("Tests", "Tests", ViewContext.RouteData.Values["controller"].ToString(), new { id = ViewContext.ViewBag.subCategoryId }, null)
         }
         @if (Url.RouteUrl(ViewContext.RouteData.Values).Contains("Manual"))
         {
-            @:> @Html.ActionLink("Manual", "Manual", ViewContext.RouteData.Values["controller"].ToString(), new { id = ViewContext.ViewBag.subCategoryId, ViewContext.ViewBag.idLangNative, ViewContext.ViewBag.idLangLearn }, null)
+            @:> @Html.ActionLink("Manual", "Manual", ViewContext.RouteData.Values["controller"].ToString(), new { id = ViewContext.ViewBag.subCategoryId }, null)
         }
         @if (Url.RouteUrl(ViewContext.RouteData.Values).Contains("Test01"))
         {
-            @:> @Html.ActionLink("Test01", "Test01", ViewContext.RouteData.Values["controller"].ToString(), new { id = ViewContext.ViewBag.subCategoryId, ViewContext.ViewBag.idLangNative, ViewContext.ViewBag.idLangLearn }, null)
+            @:> @Html.ActionLink("Test01", "Test01", ViewContext.RouteData.Values["controller"].ToString(), new { id = ViewContext.ViewBag.subCategoryId }, null)
         }
 
         <main role="main" class="pb-3">

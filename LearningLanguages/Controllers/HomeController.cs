@@ -9,21 +9,18 @@ using DAL;
 using DAL.Models;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Http;
-using Hanssens.Net;
 
 namespace LearningLanguages.Controllers
 {
     public class HomeController : Controller
     {
         IRepository<Categories> categories = new CategoriesRepository();
-        IRepository<CategoriesTranslations> categoriesTranslations = new CategoriesTranslationsRepository();
+
         IRepository<Languages> languages = new LanguagesRepository();
 
         IRepository<Words> words = new WordsRepository();
-        IRepository<WordTranslations> wordTranslations = new WordTranslationsRepository();
 
         IRepository<Tests> tests = new TestsRepository();
-        IRepository<TestTranslations> testTranslations = new TestTranslationsRepository();
 
         [HttpGet]
         public IActionResult Index()
@@ -36,184 +33,93 @@ namespace LearningLanguages.Controllers
         [HttpPost]
         public IActionResult Index(IFormCollection form)
         {
-            int idLangNative, idLangLearn;
-            var storage = new LocalStorage();
+            int idLangNative = Convert.ToInt32(form["idLangNative"]);
+            int idLangLearn = Convert.ToInt32(form["idLangLearn"]);
+            string enableNativeLang = Convert.ToString(form["enableNativeLang"]);
 
-            storage.Store("idLangNative", Convert.ToInt32(form["idLangNative"]));
-            storage.Store("idLangLearn", Convert.ToInt32(form["idLangLearn"]));
-            idLangLearn = Convert.ToInt32(storage.Get("idLangLearn"));
-            idLangNative = Convert.ToInt32(storage.Get("idLangNative"));
+            HttpContext.Session.SetString("enableNativeLang", enableNativeLang);
+            HttpContext.Session.SetInt32("idLangNative", idLangNative);
+            HttpContext.Session.SetInt32("idLangLearn", idLangLearn);
 
-            return RedirectToAction("Categories", new
-            {
-                idLangNative,
-                idLangLearn
-            });
+            return RedirectToAction("Categories");
         }
         [Route("Home/Categories")]
-        public IActionResult Categories(int idLangNative, int idLangLearn)
+        public IActionResult Categories()
         {
-            var LearnLangCat = categories.GetList().Where(s => s.ParentId == null)
-                .Join(
-                    categoriesTranslations.GetList().Where(s => s.LangId == idLangLearn),
-                    category => category.Id,
-                    categoryTrans => categoryTrans.CategoryId,
-                    (category, categoryTrans) => new
-                    {
-                        Id = category.Id,
-                        Name = categoryTrans.Translation
-                    }
-            ).ToList();
+            int idLangLearn = (int)HttpContext.Session.GetInt32("idLangLearn");
+            int idLangNative = (int)HttpContext.Session.GetInt32("idLangNative");
 
-            dynamic NativeLearnLangCat = categories.GetList().Where(s => s.ParentId == null)
-                .Join(
-                    categoriesTranslations.GetList().Where(s => s.LangId == idLangNative),
-                    category => category.Id,
-                    categoryTrans => categoryTrans.CategoryId,
-                    (category, categoryTrans) => new
-                    {
-                        Id = category.Id,
-                        Name = categoryTrans.Translation,
-                        Picture = category.Picture,
-                        Learn = LearnLangCat.Find(x => x.Id == category.Id).Name
-                    }
-            ).AsEnumerable().Select(c => c.ToExpando());
-
-            ViewBag.idLangLearn = idLangLearn;
-            ViewBag.idLangNative = idLangNative;
+            List<DTO> NativeLearnLangCat = categories.GetTranslations(idLangLearn, idLangNative, null);
 
             return View(NativeLearnLangCat);
         }
 
         [Route("Home/Categories/SubCategories")]
         [HttpGet]
-        public IActionResult SubCategories(int id, int idLangLearn, int idLangNative)
+        public IActionResult SubCategories(int id)
         {
-            var LearnLangSubCat = categories.GetList().Where(s => s.ParentId == id)
-                .Join(
-                    categoriesTranslations.GetList().Where(s => s.LangId == idLangLearn),
-                    category => category.Id,
-                    categoryTrans => categoryTrans.CategoryId,
-                    (category, categoryTrans) => new
-                    {
-                        Id = category.Id,
-                        Name = categoryTrans.Translation
-                    }
-            ).ToList();
+            int idLangLearn = (int)HttpContext.Session.GetInt32("idLangLearn");
+            int idLangNative = (int)HttpContext.Session.GetInt32("idLangNative");
 
-            dynamic NativeLearnLangSubCat = categories.GetList().Where(s => s.ParentId == id)
-                .Join(
-                    categoriesTranslations.GetList().Where(s => s.LangId == idLangNative),
-                    category => category.Id,
-                    categoryTrans => categoryTrans.CategoryId,
-                    (category, categoryTrans) => new
-                    {
-                        Id = category.Id,
-                        Name = categoryTrans.Translation,
-                        Picture = category.Picture,
-                        Learn = LearnLangSubCat.Find(x => x.Id == category.Id).Name
-                    }
-            ).AsEnumerable().Select(c => c.ToExpando());
+            List<DTO> NativeLearnLangSubCat = categories.GetTranslations(idLangLearn, idLangNative, id);
 
             ViewBag.categoryId = id;
-            ViewBag.idLangLearn = idLangLearn;
-            ViewBag.idLangNative = idLangNative;
 
             return View(NativeLearnLangSubCat);
         }
 
         [Route("Home/Categories/SubCategories/Tests")]
-        public IActionResult Tests(int id, int idLangLearn, int idLangNative)
+        public IActionResult Tests(int id)
         {
-            var LearnLangTests = tests.GetList()
-                .Join(
-                    testTranslations.GetList().Where(s => s.LangId == idLangLearn),
-                    test => test.Id,
-                    testTrans => testTrans.TestId,
-                    (test, testTrans) => new
-                    {
-                        Id = test.Id,
-                        Name = testTrans.Translation
-                    }
-            ).ToList();
+            int idLangLearn = (int)HttpContext.Session.GetInt32("idLangLearn");
+            int idLangNative = (int)HttpContext.Session.GetInt32("idLangNative");
 
-            dynamic NativeLearnLangTests = tests.GetList()
-                .Join(
-                    testTranslations.GetList().Where(s => s.LangId == idLangNative),
-                    test => test.Id,
-                    testTrans => testTrans.TestId,
-                    (test, testTrans) => new
-                    {
-                        Id = test.Id,
-                        Name = testTrans.Translation,
-                        Icon = test.Icon,
-                        Learn = LearnLangTests.Find(x => x.Id == test.Id).Name
-                    }
-            ).AsEnumerable().Select(c => c.ToExpando());
+            List<DTO> NativeLearnLangTests = tests.GetTranslations(idLangLearn, idLangNative, id);
 
-            ViewBag.categoryId = categories.GetItem(id).ParentId;
             ViewBag.subCategoryId = id;
-            ViewBag.idLangLearn = idLangLearn;
-            ViewBag.idLangNative = idLangNative;
+            ViewBag.categoryId = categories.GetItem(id).ParentId;
+
             return View(NativeLearnLangTests);
         }
 
         [Route("Home/Categories/SubCategories/Tests/Manual")]
-        public IActionResult Manual(int id, int idLangLearn, int idLangNative,int page=1)
+        public IActionResult Manual(int id)
         {
-            var LearnLangWords = words.GetList().Where(s => s.CategoryId == id)
-                .Join(
-                    wordTranslations.GetList().Where(s => s.LangId == idLangLearn),
-                    word => word.Id,
-                    wordTrans => wordTrans.WordId,
-                    (word, wordTrans) => new
-                    {
-                        Id = word.Id,
-                        Name = wordTrans.Translation
-                    }
-            ).ToList();
+            int idLangLearn = (int)HttpContext.Session.GetInt32("idLangLearn");
+            int idLangNative = (int)HttpContext.Session.GetInt32("idLangNative");
 
-            dynamic NativeLearnLangWords = words.GetList().Where(s => s.CategoryId == id)
-                .Join(
-                    wordTranslations.GetList().Where(s => s.LangId == idLangNative),
-                    word => word.Id,
-                    wordTrans => wordTrans.WordId,
-                    (word, wordTrans) => new
-                    {
-                        Id = word.Id,
-                        Name = wordTrans.Translation,
-                        Picture = word.Picture,
-                        Learn = LearnLangWords.Find(x => x.Id == word.Id).Name
-                    }
-            ).AsEnumerable().Select(c => c.ToExpando());
+            List<DTO> NativeLearnLangWords = words.GetTranslations(idLangLearn, idLangNative, id);
 
-            //int countWords = NativeLearnLangWords.Count;
-
-            //dynamic wordsItem = NativeLearnLangWords.Skip(page - 1).Take(1).AsEnumerable()
-            //                                        .Select(c => c.ToExpando()); ;
-
-            //PageViewModel pageViewModel = new PageViewModel(countWords, page, 1);
-            //IndexViewModel viewModel = new IndexViewModel
-            //{
-            //    PageViewModel = pageViewModel,
-            //    Words = wordsItem
-            //};
-
-            ViewBag.categoryId = categories.GetItem(id).ParentId;
             ViewBag.subCategoryId = id;
-            ViewBag.idLangLearn = idLangLearn;
-            ViewBag.idLangNative = idLangNative;
+            ViewBag.categoryId = categories.GetItem(id).ParentId;
 
+            return View(NativeLearnLangWords);
+        }
+
+        [Route("Home/Categories/SubCategories/Tests/Slideshow")]
+        public IActionResult Slideshow(int id)
+        {
+            int idLangLearn = (int)HttpContext.Session.GetInt32("idLangLearn");
+            int idLangNative = (int)HttpContext.Session.GetInt32("idLangNative");
+
+            List<DTO> NativeLearnLangWords = words.GetTranslations(idLangLearn, idLangNative, id);
+
+            ViewBag.subCategoryId = id;
+            ViewBag.categoryId = categories.GetItem(id).ParentId;
 
             return View(NativeLearnLangWords);
         }
 
         [Route("Home/Categories/SubCategories/Tests/Test01")]
-        public IActionResult Test01(int id, int idLangLearn, int idLangNative)
+        public IActionResult Test01(int id)
         {
+            int idLangLearn = (int)HttpContext.Session.GetInt32("idLangLearn");
+            int idLangNative = (int)HttpContext.Session.GetInt32("idLangNative");
+            string enableNativeLang = HttpContext.Session.GetString("enableNativeLang");
+
             Random rand = new Random();
 
-            var LearnLangWords = words.GetList().Where(s => s.CategoryId == id);
+            var LearnLangWords = words.GetTranslations(idLangLearn, idLangNative, id);
 
             int randomWordId1 = rand.Next(LearnLangWords.First().Id, LearnLangWords.Last().Id + 1);
             int randomWordId2 = rand.Next(LearnLangWords.First().Id, LearnLangWords.Last().Id + 1);
@@ -221,18 +127,14 @@ namespace LearningLanguages.Controllers
                 randomWordId2 = rand.Next(LearnLangWords.First().Id, LearnLangWords.Last().Id + 1);
             }
 
-            Words word1 = words.GetItem(randomWordId1);
-            Words word2 = words.GetItem(randomWordId2);
+            DTO word1 = LearnLangWords.Find(w => w.Id == randomWordId1);
+            DTO word2 = LearnLangWords.Find(w => w.Id == randomWordId2);
 
-            List<Words> twoWords = new List<Words>();
+            List<DTO> twoWords = new List<DTO>() { word1, word2 };
 
-            twoWords.Add(word1);
-            twoWords.Add(word2);
-
-            ViewBag.categoryId = categories.GetItem(id).ParentId;
             ViewBag.subCategoryId = id;
-            ViewBag.idLangLearn = idLangLearn;
-            ViewBag.idLangNative = idLangNative;
+            ViewBag.categoryId = categories.GetItem(id).ParentId;
+            ViewBag.enableNativeLang = enableNativeLang;
 
             return View(twoWords);
         }

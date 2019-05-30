@@ -62,5 +62,10 @@ namespace DAL.Repositories
             Dispose(true);
             GC.SuppressFinalize(this);
         }
+
+        public List<DTO> GetTranslations(int idLangLearn, int idLangNative, int? parentId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

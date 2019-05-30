@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DAL.Models;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -13,5 +14,6 @@ namespace DAL
         void Update(T item); 
         void Delete(int id); 
         void Save();
+        List<DTO> GetTranslations(int idLangLearn, int idLangNative, int? parentId);
     }
 }
