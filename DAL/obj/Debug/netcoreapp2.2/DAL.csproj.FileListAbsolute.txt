@@ -1,25 +1,3 @@
-D:\Projects\DAL\DAL\bin\Debug\netcoreapp2.2\DAL.deps.json
-D:\Projects\DAL\DAL\bin\Debug\netcoreapp2.2\DAL.runtimeconfig.json
-D:\Projects\DAL\DAL\bin\Debug\netcoreapp2.2\DAL.runtimeconfig.dev.json
-D:\Projects\DAL\DAL\bin\Debug\netcoreapp2.2\DAL.dll
-D:\Projects\DAL\DAL\obj\Debug\netcoreapp2.2\DAL.csprojAssemblyReference.cache
-D:\Projects\DAL\DAL\obj\Debug\netcoreapp2.2\DAL.csproj.CoreCompileInputs.cache
-D:\Projects\DAL\DAL\obj\Debug\netcoreapp2.2\DAL.AssemblyInfoInputs.cache
-D:\Projects\DAL\DAL\obj\Debug\netcoreapp2.2\DAL.AssemblyInfo.cs
-D:\Projects\DAL\DAL\bin\Debug\netcoreapp2.2\DAL.pdb
-D:\Projects\DAL\DAL\obj\Debug\netcoreapp2.2\DAL.dll
-D:\Projects\DAL\DAL\obj\Debug\netcoreapp2.2\DAL.pdb
-D:\Projects\LearnLang\DAL\bin\Debug\netcoreapp2.2\DAL.deps.json
-D:\Projects\LearnLang\DAL\bin\Debug\netcoreapp2.2\DAL.runtimeconfig.json
-D:\Projects\LearnLang\DAL\bin\Debug\netcoreapp2.2\DAL.runtimeconfig.dev.json
-D:\Projects\LearnLang\DAL\bin\Debug\netcoreapp2.2\DAL.dll
-D:\Projects\LearnLang\DAL\bin\Debug\netcoreapp2.2\DAL.pdb
-D:\Projects\LearnLang\DAL\obj\Debug\netcoreapp2.2\DAL.csprojAssemblyReference.cache
-D:\Projects\LearnLang\DAL\obj\Debug\netcoreapp2.2\DAL.csproj.CoreCompileInputs.cache
-D:\Projects\LearnLang\DAL\obj\Debug\netcoreapp2.2\DAL.AssemblyInfoInputs.cache
-D:\Projects\LearnLang\DAL\obj\Debug\netcoreapp2.2\DAL.AssemblyInfo.cs
-D:\Projects\LearnLang\DAL\obj\Debug\netcoreapp2.2\DAL.dll
-D:\Projects\LearnLang\DAL\obj\Debug\netcoreapp2.2\DAL.pdb
 D:\Projects\producthouse_2019_2\WebSpeak v.1\VitaliiMahlona\DAL\bin\Debug\netcoreapp2.2\DAL.deps.json
 D:\Projects\producthouse_2019_2\WebSpeak v.1\VitaliiMahlona\DAL\bin\Debug\netcoreapp2.2\DAL.runtimeconfig.json
 D:\Projects\producthouse_2019_2\WebSpeak v.1\VitaliiMahlona\DAL\bin\Debug\netcoreapp2.2\DAL.runtimeconfig.dev.json
