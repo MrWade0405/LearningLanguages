@@ -3845,11 +3845,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Projects\\LearnLang\\DAL\\DAL.csproj",
+      "projectUniqueName": "D:\\Projects\\producthouse_2019_2\\WebSpeak v.1\\VitaliiMahlona\\DAL\\DAL.csproj",
       "projectName": "DAL",
-      "projectPath": "D:\\Projects\\LearnLang\\DAL\\DAL.csproj",
+      "projectPath": "D:\\Projects\\producthouse_2019_2\\WebSpeak v.1\\VitaliiMahlona\\DAL\\DAL.csproj",
       "packagesPath": "C:\\Users\\vmahlona\\.nuget\\packages\\",
-      "outputPath": "D:\\Projects\\LearnLang\\DAL\\obj\\",
+      "outputPath": "D:\\Projects\\producthouse_2019_2\\WebSpeak v.1\\VitaliiMahlona\\DAL\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

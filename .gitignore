@@ -1,2 +1,5 @@
-.vs
-DictionaryForFullStack
+.vs/
+bin/
+obj/
+packages/
+DictionaryForFullStack/
