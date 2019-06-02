@@ -76,3 +76,4 @@ D:\LearningLanguages\LearningLanguages\obj\Debug\netcoreapp2.2\LearningLanguages
 D:\LearningLanguages\LearningLanguages\obj\Debug\netcoreapp2.2\LearningLanguages.pdb
 D:\LearningLanguages\LearningLanguages\obj\Debug\netcoreapp2.2\Razor\Views\Home\Test02.g.cshtml.cs
 D:\LearningLanguages\LearningLanguages\obj\Debug\netcoreapp2.2\Razor\Views\Home\Test04.g.cshtml.cs
+D:\LearningLanguages\LearningLanguages\obj\Debug\netcoreapp2.2\Razor\Views\Home\Test03.g.cshtml.cs
