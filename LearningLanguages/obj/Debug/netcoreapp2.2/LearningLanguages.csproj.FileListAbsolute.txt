@@ -19,7 +19,6 @@ D:\Projects\producthouse_2019_2\WebSpeak v.1\VitaliiMahlona\LearningLanguages\ob
 D:\Projects\producthouse_2019_2\WebSpeak v.1\VitaliiMahlona\LearningLanguages\obj\Debug\netcoreapp2.2\Razor\Views\Home\Categories.g.cshtml.cs
 D:\Projects\producthouse_2019_2\WebSpeak v.1\VitaliiMahlona\LearningLanguages\obj\Debug\netcoreapp2.2\Razor\Views\Home\Index.g.cshtml.cs
 D:\Projects\producthouse_2019_2\WebSpeak v.1\VitaliiMahlona\LearningLanguages\obj\Debug\netcoreapp2.2\Razor\Views\Home\Manual.g.cshtml.cs
-D:\Projects\producthouse_2019_2\WebSpeak v.1\VitaliiMahlona\LearningLanguages\obj\Debug\netcoreapp2.2\Razor\Views\Home\Privacy.g.cshtml.cs
 D:\Projects\producthouse_2019_2\WebSpeak v.1\VitaliiMahlona\LearningLanguages\obj\Debug\netcoreapp2.2\Razor\Views\Home\Slideshow.g.cshtml.cs
 D:\Projects\producthouse_2019_2\WebSpeak v.1\VitaliiMahlona\LearningLanguages\obj\Debug\netcoreapp2.2\Razor\Views\Home\SubCategories.g.cshtml.cs
 D:\Projects\producthouse_2019_2\WebSpeak v.1\VitaliiMahlona\LearningLanguages\obj\Debug\netcoreapp2.2\Razor\Views\Home\Test01.g.cshtml.cs
