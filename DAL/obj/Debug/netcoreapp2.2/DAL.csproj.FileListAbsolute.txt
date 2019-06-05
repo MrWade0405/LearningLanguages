@@ -9,14 +9,3 @@ D:\Projects\producthouse_2019_2\WebSpeak v.1\VitaliiMahlona\DAL\obj\Debug\netcor
 D:\Projects\producthouse_2019_2\WebSpeak v.1\VitaliiMahlona\DAL\obj\Debug\netcoreapp2.2\DAL.AssemblyInfo.cs
 D:\Projects\producthouse_2019_2\WebSpeak v.1\VitaliiMahlona\DAL\obj\Debug\netcoreapp2.2\DAL.dll
 D:\Projects\producthouse_2019_2\WebSpeak v.1\VitaliiMahlona\DAL\obj\Debug\netcoreapp2.2\DAL.pdb
-D:\LearningLanguages\DAL\bin\Debug\netcoreapp2.2\DAL.deps.json
-D:\LearningLanguages\DAL\bin\Debug\netcoreapp2.2\DAL.runtimeconfig.json
-D:\LearningLanguages\DAL\bin\Debug\netcoreapp2.2\DAL.runtimeconfig.dev.json
-D:\LearningLanguages\DAL\bin\Debug\netcoreapp2.2\DAL.dll
-D:\LearningLanguages\DAL\bin\Debug\netcoreapp2.2\DAL.pdb
-D:\LearningLanguages\DAL\obj\Debug\netcoreapp2.2\DAL.csprojAssemblyReference.cache
-D:\LearningLanguages\DAL\obj\Debug\netcoreapp2.2\DAL.csproj.CoreCompileInputs.cache
-D:\LearningLanguages\DAL\obj\Debug\netcoreapp2.2\DAL.AssemblyInfoInputs.cache
-D:\LearningLanguages\DAL\obj\Debug\netcoreapp2.2\DAL.AssemblyInfo.cs
-D:\LearningLanguages\DAL\obj\Debug\netcoreapp2.2\DAL.dll
-D:\LearningLanguages\DAL\obj\Debug\netcoreapp2.2\DAL.pdb
