@@ -23,8 +23,18 @@ using LearningLanguages.Models;
 
 #line default
 #line hidden
+#line 3 "D:\Projects\producthouse_2019_2\WebSpeak v.1\VitaliiMahlona\LearningLanguages\Views\_ViewImports.cshtml"
+using Microsoft.AspNetCore.Identity;
+
+#line default
+#line hidden
+#line 4 "D:\Projects\producthouse_2019_2\WebSpeak v.1\VitaliiMahlona\LearningLanguages\Views\_ViewImports.cshtml"
+using DAL.Models;
+
+#line default
+#line hidden
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"17c56b22abbde1dfea76329ea6327d4deac10606", @"/Views/Home/Slideshow.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"38af786468679fa6d2dbc35b23cd1d4d8ad8a953", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"b4c1812b6a3246bc948fc2072e35e410a7fa00bd", @"/Views/_ViewImports.cshtml")]
     public class Views_Home_Slideshow : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<IEnumerable<DAL.Models.DTO>>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("rel", new global::Microsoft.AspNetCore.Html.HtmlString("stylesheet"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -64,7 +74,7 @@ using LearningLanguages.Models;
             WriteLiteral("\r\n");
             EndContext();
             BeginContext(85, 52, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "17c56b22abbde1dfea76329ea6327d4deac106064324", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "17c56b22abbde1dfea76329ea6327d4deac106064673", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();

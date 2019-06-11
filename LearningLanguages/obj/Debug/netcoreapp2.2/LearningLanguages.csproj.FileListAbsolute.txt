@@ -38,3 +38,6 @@ D:\Projects\producthouse_2019_2\WebSpeak v.1\VitaliiMahlona\LearningLanguages\ob
 D:\Projects\producthouse_2019_2\WebSpeak v.1\VitaliiMahlona\LearningLanguages\obj\Debug\netcoreapp2.2\LearningLanguages.dll
 D:\Projects\producthouse_2019_2\WebSpeak v.1\VitaliiMahlona\LearningLanguages\obj\Debug\netcoreapp2.2\LearningLanguages.pdb
 D:\Projects\producthouse_2019_2\WebSpeak v.1\VitaliiMahlona\LearningLanguages\obj\Debug\netcoreapp2.2\Razor\Views\Home\Test.g.cshtml.cs
+D:\Projects\producthouse_2019_2\WebSpeak v.1\VitaliiMahlona\LearningLanguages\obj\Debug\netcoreapp2.2\Razor\Views\Account\Manage\_Layout.g.cshtml.cs
+D:\Projects\producthouse_2019_2\WebSpeak v.1\VitaliiMahlona\LearningLanguages\obj\Debug\netcoreapp2.2\Razor\Views\Account\Manage\_ManageNav.g.cshtml.cs
+D:\Projects\producthouse_2019_2\WebSpeak v.1\VitaliiMahlona\LearningLanguages\obj\Debug\netcoreapp2.2\Razor\Views\Account\Manage\Statistics.g.cshtml.cs
