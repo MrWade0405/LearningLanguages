@@ -42,3 +42,4 @@ D:\Projects\producthouse_2019_2\WebSpeak v.1\VitaliiMahlona\LearningLanguages\ob
 D:\Projects\producthouse_2019_2\WebSpeak v.1\VitaliiMahlona\LearningLanguages\obj\Debug\netcoreapp2.2\Razor\Views\Account\Manage\_ManageNav.g.cshtml.cs
 D:\Projects\producthouse_2019_2\WebSpeak v.1\VitaliiMahlona\LearningLanguages\obj\Debug\netcoreapp2.2\Razor\Views\Account\Manage\Statistics.g.cshtml.cs
 D:\Projects\producthouse_2019_2\WebSpeak v.1\VitaliiMahlona\LearningLanguages\obj\Debug\netcoreapp2.2\Razor\Views\Account\Manage\Index.g.cshtml.cs
+D:\Projects\producthouse_2019_2\WebSpeak v.1\VitaliiMahlona\LearningLanguages\obj\Debug\netcoreapp2.2\Razor\Views\Account\Manage\ChangePassword.g.cshtml.cs
