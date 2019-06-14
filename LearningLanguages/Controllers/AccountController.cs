@@ -12,11 +12,19 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
+using Microsoft.AspNetCore.Authentication;
 
 namespace LearningLanguages.Controllers
 {
     public class AccountController : Controller
     {
+        public ExternalLoginViewModel externalLoginViewModel { get; set; }
+
+        public IList<AuthenticationScheme> ExternalLogins { get; set; }
+
+        [TempData]
+        public string ErrorMessage { get; set; }
+
         private readonly UserManager<Users> _userManager;
          
         private readonly SignInManager<Users> _signInManager;
@@ -54,7 +62,13 @@ namespace LearningLanguages.Controllers
         {
             if (ModelState.IsValid)
             {
-                Users user = new Users { Email = model.Email, UserName = model.Email };
+                Users user = new Users
+                {
+                    Email = model.Email,
+                    UserName = model.Email,
+                    FirstName = model.FirstName,
+                    LastName = model.LastName
+                };
 
                 var addedUser = await _userManager.CreateAsync(user, model.Password);
 
@@ -77,15 +91,35 @@ namespace LearningLanguages.Controllers
         }
 
         [HttpGet]
-        public IActionResult Login(string returnUrl = null)
+        public async Task<IActionResult> Login(string returnUrl = null)
         {
-            return View(new LoginViewModel { ReturnUrl = returnUrl });
+            if (!string.IsNullOrEmpty(ErrorMessage))
+            {
+                ModelState.AddModelError(string.Empty, ErrorMessage);
+            }
+
+            returnUrl = returnUrl ?? Url.Content("~/");
+
+            // Clear the existing external cookie to ensure a clean login process
+            await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
+
+            ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
+
+            LoginViewModel login = new LoginViewModel
+            {
+                ExternalLogins = ExternalLogins,
+                ReturnUrl = returnUrl
+            };
+
+            return View(login);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(LoginViewModel model)
         {
+            model.ReturnUrl = model.ReturnUrl ?? Url.Content("~/");
+
             if (ModelState.IsValid)
             {
                 var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, false);
@@ -107,6 +141,68 @@ namespace LearningLanguages.Controllers
                 }
             }
             return View(model);
+        }
+
+        [HttpGet]
+        public IActionResult ExternalLogin()
+        {
+            return Redirect("./Login");
+        }
+
+        [HttpPost]
+        public IActionResult ExternalLogin(string provider, string returnUrl = null)
+        {
+            var redirectUrl = Url.Action("Callback", values: new { returnUrl });
+            var properties = _signInManager.ConfigureExternalAuthenticationProperties(provider, redirectUrl);
+
+            return new ChallengeResult(provider, properties);
+        }
+
+        public async Task<IActionResult> Callback(string returnUrl = null, string remoteError = null)
+        {
+            returnUrl = returnUrl ?? Url.Content("~/");
+
+            if (remoteError != null)
+            {
+                ErrorMessage = $"Error from external provider: {remoteError}";
+                return RedirectToAction("./Login", new { ReturnUrl = returnUrl });
+            }
+
+            var info = await _signInManager.GetExternalLoginInfoAsync();
+
+            if (info == null)
+            {
+                ErrorMessage = "Error loading external login information.";
+                return RedirectToAction("./Login", new { ReturnUrl = returnUrl });
+            }
+
+            // Sign in the user with this external login provider if the user already has a login.
+            var result = await _signInManager.ExternalLoginSignInAsync(info.LoginProvider, info.ProviderKey, isPersistent: false, bypassTwoFactor: true);
+
+            if (result.Succeeded)
+            {
+                 return LocalRedirect(returnUrl);
+            }
+
+            if (result.IsLockedOut)
+            {
+                return View("./Lockout");
+            }
+            else
+            {
+                // If the user does not have an account, then ask the user to create an account.
+                externalLoginViewModel.ReturnUrl = returnUrl;
+                externalLoginViewModel.LoginProvider = info.LoginProvider;
+
+                if (info.Principal.HasClaim(c => c.Type == ClaimTypes.Email))
+                {
+                    ExternalLoginViewModel login = new ExternalLoginViewModel
+                    {
+                        Email = info.Principal.FindFirstValue(ClaimTypes.Email)
+                    };
+                }
+                return View("./ExternalLogin",externalLoginViewModel);
+            }
         }
 
         [HttpGet]
@@ -145,19 +241,8 @@ namespace LearningLanguages.Controllers
             var testResultQuery = _testResults.GetAll().Where(x => x.UserId == currentUserId);
             var totalScoresQuery = _totalScores.GetAll().Where(x => x.UserId == currentUserId);
 
-            int idLangLearn = -1;
-            int idLangNative = -1;
-            int defaultLangId = 3;
-
-            if (HttpContext?.Session?.GetInt32("idLangLearn") != null)
-            {
-                idLangLearn = (int)HttpContext.Session.GetInt32("idLangLearn");
-            }
-
-            if (HttpContext?.Session?.GetInt32("idLangLearn") != null)
-            {
-                idLangNative = (int)HttpContext.Session.GetInt32("idLangNative");
-            }
+            int idLangLearn = (int)HttpContext.Session.GetInt32("idLangLearn");
+            int idLangNative = (int)HttpContext.Session.GetInt32("idLangNative");
 
             List<DTO> NativeLearnLang = await _languages.GetAll()
                 .Join(
@@ -188,18 +273,9 @@ namespace LearningLanguages.Controllers
             List<DTO> NativeLearnLangSubCat;
             List<DTO> NativeLearnLangCat;
 
-            if (idLangLearn != -1 && idLangNative != -1)
-            {
-                NativeLearnLangTests = await _tests.GetTranslations(idLangLearn, idLangNative, null);
-                NativeLearnLangSubCat = await _categories.GetTranslations(idLangLearn, idLangNative, -1);
-                NativeLearnLangCat = await _categories.GetTranslations(idLangLearn, idLangNative, null);
-            }
-            else
-            {
-                NativeLearnLangTests = await _tests.GetTranslations(defaultLangId, defaultLangId, null);
-                NativeLearnLangSubCat = await _categories.GetTranslations(defaultLangId, defaultLangId, -1);
-                NativeLearnLangCat = await _categories.GetTranslations(defaultLangId, defaultLangId, null);
-            }
+            NativeLearnLangTests = await _tests.GetTranslations(idLangLearn, idLangNative, null);
+            NativeLearnLangSubCat = await _categories.GetTranslations(idLangLearn, idLangNative, -1);
+            NativeLearnLangCat = await _categories.GetTranslations(idLangLearn, idLangNative, null);
 
             List<DTOTestResults> LearnLangCat = await testResultQuery
                .Join(
@@ -275,6 +351,119 @@ namespace LearningLanguages.Controllers
             await _signInManager.RefreshSignInAsync(user);
 
             return RedirectToAction("ChangePassword", "Account");
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> PersonalInfo()
+        {
+            var user = await _userManager.GetUserAsync(User);
+
+            if (user == null)
+            {
+                return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+            }
+
+            var email = await _userManager.GetEmailAsync(user);
+            var firstName = user.FirstName;
+            var lastName = user.LastName;
+
+            PersonalInfoViewModel personalInfo = new PersonalInfoViewModel
+            {
+                Email = email,
+                FirstName = firstName,
+                LastName = lastName
+            };
+
+            return View("./Manage/PersonalInfo", personalInfo);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> PersonalInfo(PersonalInfoViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View("./Manage/PersonalInfo");
+            }
+
+            var user = await _userManager.GetUserAsync(User);
+
+            if (user == null)
+            {
+                return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+            }
+
+            var email = await _userManager.GetEmailAsync(user);
+
+            if (model.Email != email)
+            {
+                var setEmailResult = await _userManager.SetEmailAsync(user, model.Email);
+
+                if (!setEmailResult.Succeeded)
+                {
+                    var userId = await _userManager.GetUserIdAsync(user);
+                    throw new InvalidOperationException($"Unexpected error occurred setting email for user with ID '{userId}'.");
+                }
+            }
+
+            string firstName = Convert.ToString(model.FirstName);
+            string lastName = Convert.ToString(model.LastName);
+
+            if (firstName != user.FirstName)
+            {
+                user.FirstName = firstName;
+            }
+
+            if (lastName != user.LastName)
+            {
+                user.LastName = lastName;
+            }
+
+            await _userManager.UpdateAsync(user);
+
+            await _signInManager.RefreshSignInAsync(user);
+
+            return RedirectToAction("PersonalInfo", "Account");
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Rating()
+        {
+            var totalScoresQuery = _totalScores.GetAll();
+
+            int idLangLearn = (int)HttpContext.Session.GetInt32("idLangLearn");
+            int idLangNative = (int)HttpContext.Session.GetInt32("idLangNative");
+
+            List<DTO> NativeLearnLang = await _languages.GetAll()
+                .Join(
+                    _languageTranslations.GetAll().Where(s => s.LangId == idLangNative),
+                    lang => lang.Id,
+                    langTrans => langTrans.LangId,
+                    (lang, langTrans) => new DTO
+                    {
+                        Id = langTrans.NativeLangId,
+                        WordNativeLang = langTrans.Translation,
+                    }
+                ).Distinct()
+                .Join(
+                    _totalScores.GetAll(),
+                    lang => lang.Id,
+                    total => total.LangId,
+                    (lang, total) => new DTO
+                    {
+                        Id = lang.Id,
+                        WordNativeLang = lang.WordNativeLang,
+                        Total = total.Total,
+                        UserId = total.UserId
+                    }
+                )
+               .Distinct().ToListAsync();
+
+            DTOStatistics statistics = new DTOStatistics()
+            {
+                LangList = NativeLearnLang
+            };
+
+            return View("./Manage/Rating", statistics);
         }
 
         [HttpPost]
