@@ -4722,11 +4722,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\producthouse_2019_2\\WebSpeak v.1\\VitaliiMahlona\\DAL\\DAL.csproj",
+      "projectUniqueName": "D:\\LearningLanguages\\DAL\\DAL.csproj",
       "projectName": "DAL",
-      "projectPath": "D:\\producthouse_2019_2\\WebSpeak v.1\\VitaliiMahlona\\DAL\\DAL.csproj",
+      "projectPath": "D:\\LearningLanguages\\DAL\\DAL.csproj",
       "packagesPath": "C:\\Users\\maglo\\.nuget\\packages\\",
-      "outputPath": "D:\\producthouse_2019_2\\WebSpeak v.1\\VitaliiMahlona\\DAL\\obj\\",
+      "outputPath": "D:\\LearningLanguages\\DAL\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

@@ -13022,11 +13022,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\producthouse_2019_2\\WebSpeak v.1\\VitaliiMahlona\\LearningLanguages\\LearningLanguages.csproj",
+      "projectUniqueName": "D:\\LearningLanguages\\LearningLanguages\\LearningLanguages.csproj",
       "projectName": "LearningLanguages",
-      "projectPath": "D:\\producthouse_2019_2\\WebSpeak v.1\\VitaliiMahlona\\LearningLanguages\\LearningLanguages.csproj",
+      "projectPath": "D:\\LearningLanguages\\LearningLanguages\\LearningLanguages.csproj",
       "packagesPath": "C:\\Users\\maglo\\.nuget\\packages\\",
-      "outputPath": "D:\\producthouse_2019_2\\WebSpeak v.1\\VitaliiMahlona\\LearningLanguages\\obj\\",
+      "outputPath": "D:\\LearningLanguages\\LearningLanguages\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -13045,8 +13045,8 @@
       "frameworks": {
         "netcoreapp2.2": {
           "projectReferences": {
-            "D:\\producthouse_2019_2\\WebSpeak v.1\\VitaliiMahlona\\DAL\\DAL.csproj": {
-              "projectPath": "D:\\producthouse_2019_2\\WebSpeak v.1\\VitaliiMahlona\\DAL\\DAL.csproj"
+            "D:\\LearningLanguages\\DAL\\DAL.csproj": {
+              "projectPath": "D:\\LearningLanguages\\DAL\\DAL.csproj"
             }
           }
         }
